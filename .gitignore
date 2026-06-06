@@ -1,0 +1,57 @@
+# Architect Platform — .gitignore
+
+# Node / npm
+node_modules/
+npm-debug.log*
+package-lock.json
+
+# Go
+backend/architect-api
+backend/architect-server
+backend/*.exe
+
+# Database
+backend/architect.db
+*.sqlite
+*.sqlite3
+
+# OS
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# IDE
+.vscode/
+.idea/
+*.iml
+*.sublime-*
+
+# Environment (keep .env.example)
+.env
+.env.local
+.env.production
+
+# Build output
+landing/dist/
+landing/.astro/
+
+# Media / temp
+*.tar
+*.gz
+*.zip
+*.mp4
+*.jpg
+*.png
+!content/**/*.jpg
+!content/**/*.png
+!landing/public/**/*.jpg
+!landing/public/**/*.png
+
+# Backup artifacts
+infra/backups/backup-*.tar.gz
+
+# Logs
+*.log
+nginx-logs/

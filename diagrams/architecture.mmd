@@ -1,0 +1,86 @@
+---
+title: Dunaev System Architecture
+---
+graph TB
+    subgraph User["👤 Пользовательский слой"]
+        L[Landing Page]
+        B[Blog]
+        P[Portfolio]
+        K[Contacts]
+    end
+
+    subgraph Frontend["🖥️ Frontend"]
+        A[Astro.js SSG]
+        T[Tailwind CSS]
+        R[React Components]
+    end
+
+    subgraph Hosting["☁️ Хостинг"]
+        CF[Cloudflare Pages]
+        DNS[Cloudflare DNS]
+        CDN[CDN / Кэширование]
+    end
+
+    subgraph Backend["🔧 Backend"]
+        W[Cloudflare Workers]
+        FS[Formspree / Forms]
+        API[REST API]
+    end
+
+    subgraph CI_CD["🔄 CI/CD"]
+        GH[GitHub Actions]
+        BUILD[Build & Deploy]
+    end
+
+    subgraph Services["📊 Сервисы"]
+        AN[Analytics]
+        SEO[SEO]
+        PG[Preview Generator]
+        ML[Mailing]
+    end
+
+    subgraph Content["📝 Контент"]
+        MD[Markdown / MDX]
+        IMG[Images / SVG]
+        VID[Video Previews]
+    end
+
+    subgraph Tools["🧰 Инструменты"]
+        PAP[Paperclip - Управление задачами]
+        HER[Hermes AI - Ассистенты]
+        EXC[Excalidraw - Диаграммы]
+        MRM[Mermaid - Диаграммы]
+    end
+
+    User --> Frontend
+    Frontend --> A
+    A --> Hosting
+    Hosting --> CF
+    CF --> DNS
+    CF --> CDN
+    
+    A --> Backend
+    Backend --> W
+    Backend --> FS
+    Backend --> API
+
+    CI_CD --> GH
+    GH --> BUILD
+    BUILD --> CF
+
+    Services --> AN
+    Services --> SEO
+    Services --> PG
+    Services --> ML
+
+    Content --> MD
+    Content --> IMG
+    Content --> VID
+
+    Tools --> PAP
+    Tools --> HER
+    Tools --> EXC
+    Tools --> MRM
+
+    PG --> IMG
+    PG --> VID

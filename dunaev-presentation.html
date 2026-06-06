@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Dunaev — Интегрированная система управления проектом</title>
+<meta name="description" content="Dunaev объединяет 5 доменов: хостинг, разработку, графику, аналитику и маркетинг в единую экосистему под управлением Paperclip-агентов.">
+<script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true,theme:'dark',themeVariables:{primaryColor:'#5b8cd4',primaryTextColor:'#e8edf5',primaryBorderColor:'#4a7ab8',lineColor:'#6b9bd4',secondaryColor:'#3a5a7a',tertiaryColor:'#2a3a5a',fontSize:'14px'},themeCSS:'g.label{font-family:system-ui,sans-serif}.cluster-label text{fill:#8ba4c9!important;font-weight:600}.edgeLabel{color:#b0c4de!important}'})</script>
+<style>
+:root{
+  --accent:#5b8cd4;
+  --accent-light:#8ab4f8;
+  --accent-dark:#3a6aaa;
+  --bg:#0d1117;
+  --bg-card:#161b22;
+  --bg-surface:#1c2333;
+  --text:#e8edf5;
+  --text-secondary:#8ba4c9;
+  --border:#30363d;
+  --radius:12px;
+  --font:'Inter','Segoe UI',system-ui,sans-serif;
+  --mono:'JetBrains Mono','Fira Code',monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:70px}
+body{font-family:var(--font);font-size:16px;line-height:1.6;color:var(--text);background:var(--bg);min-height:100vh;-webkit-font-smoothing:antialiased}
+a{color:var(--accent);text-decoration:none;transition:color .2s}
+a:hover{color:var(--accent-light)}
+.container{max-width:1200px;margin:0 auto;padding:0 20px}
+section{padding:60px 0}
+.section-title{font-size:clamp(24px,4vw,32px);font-weight:700;margin-bottom:8px}
+.section-subtitle{color:var(--text-secondary);font-size:13px;letter-spacing:6px;text-transform:uppercase;margin-bottom:40px}
+h1{font-size:clamp(28px,5vw,48px);font-weight:700}
+h2{font-size:clamp(22px,3.5vw,28px)}h3{font-size:18px}
+/* Nav */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(13,17,23,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+.nav-inner{max-width:1200px;margin:0 auto;padding:0 20px;display:flex;align-items:center;justify-content:space-between;height:60px}
+.nav-logo{display:flex;align-items:center;gap:10px;font-size:18px;font-weight:700;color:var(--text);letter-spacing:1px}
+.nav-logo:hover{color:var(--accent)}
+.nav-links{display:flex;gap:20px;list-style:none;flex-wrap:wrap}
+.nav-links a{color:var(--text-secondary);font-size:13px;font-weight:500}
+.nav-links a:hover{color:var(--accent)}
+/* Hero */
+.hero{min-height:100vh;display:flex;align-items:center;text-align:center;position:relative;overflow:hidden;padding-top:60px}
+.hero::before{content:'';position:absolute;top:50%;left:50%;width:700px;height:700px;background:radial-gradient(circle,rgba(91,140,212,.1) 0%,transparent 70%);border-radius:50%;transform:translate(-50%,-50%);pointer-events:none}
+.hero-content{position:relative;z-index:1;max-width:800px;margin:0 auto}
+.hero h1 span{background:linear-gradient(135deg,var(--accent),var(--accent-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero p{color:var(--text-secondary);font-size:18px;max-width:600px;margin:16px auto 32px}
+.hero-stats{display:flex;gap:24px;justify-content:center;flex-wrap:wrap;margin-top:32px}
+.stat{text-align:center;padding:16px 24px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);min-width:120px}
+.stat-num{font-size:28px;font-weight:700;color:var(--accent)}
+.stat-label{font-size:12px;color:var(--text-secondary);margin-top:4px}
+/* Grids */
+.grid-2{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px}
+.grid-3{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px}
+.grid-4{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px}
+/* Cards */
+.card{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:24px;transition:all .3s ease}
+.card:hover{border-color:var(--accent);box-shadow:0 4px 12px rgba(91,140,212,.15);transform:translateY(-2px)}
+.card-icon{width:44px;height:44px;border-radius:10px;background:rgba(91,140,212,.12);display:flex;align-items:center;justify-content:center;margin-bottom:12px;font-size:20px}
+.card h3{margin-bottom:8px;font-size:16px}
+.card p{color:var(--text-secondary);font-size:13px;line-height:1.6}
+/* Agent cards */
+.agent-card{text-align:center;padding:24px}
+.agent-avatar{width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent-light));display:flex;align-items:center;justify-content:center;margin:0 auto 12px;font-size:24px;font-weight:700;color:#fff}
+.agent-card .role{color:var(--text-secondary);font-size:12px;margin-bottom:8px}
+.agent-card .bio{color:var(--text-secondary);font-size:12px;line-height:1.5}
+.agent-status{padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;display:inline-block;margin-top:8px}
+.status-done{background:rgba(34,197,94,.15);color:#22c55e}
+.status-progress{background:rgba(91,140,212,.15);color:var(--accent)}
+.status-todo{background:rgba(234,179,8,.15);color:#eab308}
+/* Report cards */
+.report-card{padding:20px} 
+.report-card h3{margin-bottom:4px}
+.report-card .report-author{color:var(--accent);font-size:12px;font-weight:600;margin-bottom:8px}
+.report-card p{font-size:13px;color:var(--text-secondary)}
+.report-stats{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.report-stats span{padding:2px 8px;border-radius:6px;font-size:11px;background:var(--bg-surface);color:var(--text-secondary)}
+/* Timeline */
+.timeline{position:relative;padding-left:28px}
+.timeline::before{content:'';position:absolute;left:8px;top:0;bottom:0;width:2px;background:var(--border)}
+.timeline-item{position:relative;margin-bottom:28px}
+.timeline-item::before{content:'';position:absolute;left:-24px;top:4px;width:12px;height:12px;border-radius:50%;background:var(--accent);border:2px solid var(--bg)}
+.timeline-item .phase{color:var(--accent);font-size:12px;font-weight:600;margin-bottom:4px}
+.timeline-item p{color:var(--text-secondary);font-size:13px}
+/* Diagram wrapper */
+.diagram-wrap{background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);padding:24px;overflow-x:auto;margin-top:24px}
+.diagram-wrap .mermaid{display:flex;justify-content:center}
+/* Services */
+.service-dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:6px}
+/* Marketing funnel */
+.funnel{display:flex;flex-direction:column;gap:12px;max-width:600px;margin:24px auto}
+.funnel-step{padding:16px 20px;border-radius:var(--radius);text-align:center;color:#fff;font-weight:600;font-size:14px}
+.funnel-step small{display:block;font-weight:400;font-size:12px;opacity:.8;margin-top:4px}
+/* Contact */
+.contact-info{text-align:center;padding:40px;background:var(--bg-card);border:1px solid var(--border);border-radius:var(--radius);max-width:500px;margin:0 auto}
+.contact-info p{color:var(--text-secondary);font-size:14px;margin-top:8px}
+/* Footer */
+.footer{border-top:1px solid var(--border);padding:24px 0;text-align:center}
+.footer p{color:var(--text-secondary);font-size:12px}
+/* Responsive */
+@media(max-width:768px){
+  .nav-links{display:none}
+  .hero h1{font-size:clamp(24px,7vw,32px)}
+  .hero p{font-size:16px}
+  section{padding:40px 0}
+  .grid-2,.grid-3,.grid-4{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+<div class="nav-inner">
+<a href="#" class="nav-logo">
+<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#5b8cd4" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+DUNAEV
+</a>
+<ul class="nav-links">
+<li><a href="#structure">Структура</a></li>
+<li><a href="#architect">Architect</a></li>
+<li><a href="#agents">Агенты</a></li>
+<li><a href="#reports">Отчёты</a></li>
+<li><a href="#schemes">Схемы</a></li>
+<li><a href="#marketing">Маркетинг</a></li>
+</ul>
+</div>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+<div class="hero-content">
+<h1><span>Dunaev</span> — интегрированная система<br>управления проектом</h1>
+<p>Платформа, объединяющая 5 доменов: хостинг и инфраструктуру, разработку сайта, производство графики и видео, аналитику рынка и маркетинг — под управлением AI-агентов Paperclip.</p>
+<div class="hero-stats">
+<div class="stat"><div class="stat-num">10</div><div class="stat-label">AI-агентов</div></div>
+<div class="stat"><div class="stat-num">5</div><div class="stat-label">Доменов</div></div>
+<div class="stat"><div class="stat-num">2w</div><div class="stat-label">До MVP</div></div>
+</div>
+</div>
+</section>
+
+<!-- Company Structure -->
+<section id="structure">
+<div class="container">
+<p class="section-subtitle">Кто мы</p>
+<h2 class="section-title">Структура компании</h2>
+<p style="color:var(--text-secondary);margin-bottom:32px;font-size:14px">10 AI-агентов, управляемых через Paperclip Orchestrator. Каждый отвечает за свой домен.</p>
+
+<div class="diagram-wrap">
+<div class="mermaid">
+flowchart TB
+    subgraph CEO["🧠 CEO / Архитектор"]
+        SEO["SEO.SYS<br/>Планировщик"]
+    end
+    subgraph Dev["💻 Разработка"]
+        LE["Lead Engineer<br/>Архитектор системы"]
+        CTO["CTO<br/>Техлид / Критик"]
+    end
+    subgraph Infra["☁️ Инфра"]
+        DevOps["DevOps<br/>Хостинг + CI/CD"]
+    end
+    subgraph Creative["🎨 Креатив"]
+        Designer["Designer<br/>UI/Графика/Видео"]
+    end
+    subgraph Biz["📊 Бизнес"]
+        PM["PM<br/>Продукт"]
+        Researcher["Researcher<br/>Аналитика"]
+        MKT["Marketing<br/>Маркетинг"]
+        HR["HR<br/>Кадры"]
+    end
+    subgraph QA["🔍 Качество"]
+        QA_Agent["QA<br/>Тестирование"]
+    end
+
+    CEO --> Dev & Infra & Creative & Biz & QA
+    CTO -.->|Code Review| LE
+    PM -.->|Приоритеты| Dev & Creative & Biz
+</div>
+</div>
+</div>
+</section>
+
+<!-- Architect Project -->
+<section id="architect" style="background:var(--bg-card)">
+<div class="container">
+<p class="section-subtitle">Проект</p>
+<h2 class="section-title">Architect — единая экосистема</h2>
+<p style="color:var(--text-secondary);margin-bottom:32px;font-size:14px">Полная схема системы: от пользовательского слоя до инструментов</p>
+
+<div class="diagram-wrap">
+<div class="mermaid">
+graph TB
+    subgraph User["👤 Пользовательский слой"]
+        LP["Landing Page"]
+        Blog["Блог"]
+        Portfolio["Портфолио"]
+    end
+    subgraph Front["🎨 Frontend"]
+        Astro["Astro.js SSG<br/>Тёмная тема<br/>#5b8cd4 accent"]
+    end
+    subgraph Back["⚙️ Backend"]
+        Go["Go API (Chi)"]
+        DB[("PostgreSQL")]
+        Vision["Vision Service<br/>(image analysis)"]
+    end
+    subgraph Infra2["☁️ Хостинг"]
+        VPS["VPS Masterhost"]
+        CDN["Cloudflare"]
+        CI["GitHub Actions"]
+    end
+    subgraph Creative2["🎬 Графика/Видео"]
+        Comfy["ComfyUI<br/>(видео-ген)"]
+        Brand["Бренд-кит"]
+    end
+    subgraph Tools["🔧 Инструменты"]
+        Paperclip["Paperclip<br/>(агенты)"]
+        Git["Git"]
+    end
+
+    User --> Front
+    Front --> Back
+    Back --> DB
+    Front --> CDN
+    Back --> VPS
+    CDN --> CI
+    VPS --> CI
+    Creative2 --> Brand
+    Tools --> Paperclip
+    Paperclip --> CI & Creative2
+</div>
+</div>
+</div>
+</section>
+
+<!-- Agents -->
+<section id="agents">
+<div class="container">
+<p class="section-subtitle">Команда</p>
+<h2 class="section-title">10 агентов Dunaev</h2>
+<div class="grid-3" style="margin-top:32px">
+
+<div class="card agent-card">
+<div class="agent-avatar">🧠</div>
+<h3>CEO / Архитектор</h3>
+<p class="role">Стратег</p>
+<p class="bio">Общая архитектура, распределение ресурсов, стратегические решения. Координирует работу всех служб через SEO.SYS.</p>
+<span class="agent-status status-progress">Активен</span>
+</div>
+
+<div class="card agent-card">
+<div class="agent-avatar">🔧</div>
+<h3>Lead Engineer</h3>
+<p class="role">Архитектор системы</p>
+<p class="bio">Astro-сайт, Go API, архитектура кода, интеграции. Отвечает за разработку и код-ревью.</p>
+<span class="agent-status status-progress">Активен</span>
+</div>
+
+<div class="card agent-card">
+<div class="agent-avatar">🔬</div>
+<h3>CTO</h3>
+<p class="role">Технический директор</p>
+<p class="bio">Выбор стека, критика архитектуры, аудит кода, технологические решения. Выпускает CTO-отчёты.</p>
+<span class="agent-status status-progress">Активен</span>
+</div>
+
+<div class="card agent-card">
+<div class="agent-avatar">☁️</div>
+<h3>DevOps</h3>
+<p class="role">Инфраструктура</p>
+<p class="bio">VPS, CI/CD, домены, DNS, SSL, бэкапы, мониторинг, безопасность.</p>
+<span class="agent-status status-todo">Запланирован</span>
+</div>
+
+<div class="card agent-card">
+<div class="agent-avatar">🎨</div>
+<h3>Designer</h3>
+<p class="role">Дизайнер</p>
+<p class="bio">Бренд-кит, логотип, SMM-графика, видео-превью, UI/UX макеты, обложки.</p>
+<span class="agent-status status-progress">Активен</span>
+</div>
+
+<div class="card agent-card">
+<div class="agent-avatar">📋</div>
+<h3>PM</h3>
+<p class="role">Продукт-менеджер</p>
+<p class="bio">Спринты, приоритеты, контент-план, трекинг задач, ретроспективы. Контент-план на 30 дней.</p>
+<span class="agent-status status-progress">Активен</span>
+</div>
+
+<div class="card agent-card">
+<div class="agent-avatar">📊</div>
+<h3>Researcher</h3>
+<p class="role">Исследователь</p>
+<p class="bio">Анализ рынка, конкуренты, ЦА, keyword research, тренды, отчёты с рекомендациями.</p>
+<span class="agent-status status-done">Готово</span>
+</div>
+
+<div class="card agent-card">
+<div class="agent-avatar">📢</div>
+<h3>Marketing</h3>
+<p class="role">Маркетолог</p>
+<p class="bio">Стратегия, воронка продаж, SMM (X/Twitter, Telegram), контент, запуск.</p>
+<span class="agent-status status-progress">Активен</span>
+</div>
+
+<div class="card agent-card">
+<div class="agent-avatar">🔍</div>
+<h3>QA</h3>
+<p class="role">Инженер качества</p>
+<p class="bio">Тест-планы, автотесты, проверка чеклистов, баг-трекинг, performance testing.</p>
+<span class="agent-status status-todo">Запланирован</span>
+</div>
+
+<div class="card agent-card">
+<div class="agent-avatar">👥</div>
+<h3>HR</h3>
+<p class="role">Кадры</p>
+<p class="bio">Найм, онбординг, кадровый учёт, корпоративная культура.</p>
+<span class="agent-status status-todo">Запланирован</span>
+</div>
+
+</div>
+</div>
+</section>
+
+<!-- Reports -->
+<section id="reports" style="background:var(--bg-card)">
+<div class="container">
+<p class="section-subtitle">Отчёты служб</p>
+<h2 class="section-title">Что сделано</h2>
+<p style="color:var(--text-secondary);margin-bottom:32px;font-size:14px">Каждая служба отчитывается о выполненной работе. Курсовая работа в действии.</p>
+
+<div class="grid-2">
+
+<div class="card report-card">
+<div class="report-author">☁️ DevOps</div>
+<h3>Инфраструктура</h3>
+<p>VPS (Masterhost), GitHub Actions CI/CD, Cloudflare DNS, SSL, домены dunaev.dev. Автоматический деплой по push в main.</p>
+<div class="report-stats"><span>DUN-53 blocked</span><span>DUN-67</span></div>
+</div>
+
+<div class="card report-card">
+<div class="report-author">🔧 Lead Engineer</div>
+<h3>Разработка сайта</h3>
+<p>Landing Page (Astro.js, CSS variables, mobile-first) — готова и собрана. Sitemap, OG/Twitter meta, Web3Forms. Blog MDX integration.</p>
+<div class="report-stats"><span>DUN-54 ✅</span><span>DUN-110 ✅</span><span>DUN-111 📝</span></div>
+</div>
+
+<div class="card report-card">
+<div class="report-author">🎨 Designer</div>
+<h3>Графика и бренд-кит</h3>
+<p>Бренд-кит с цветовой схемой (steel-blue #5b8cd4, dark theme). Логотип, favicon, SMM-шаблоны (Twitter, Telegram), обложки статей, wireframe сайта.</p>
+<div class="report-stats"><span>Бренд-кит ✅</span><span>10+ макетов</span></div>
+</div>
+
+<div class="card report-card">
+<div class="report-author">📊 Researcher</div>
+<h3>Анализ рынка</h3>
+<p>Исследование конкурентов, определение ЦА, keyword research, тренды ниши. Полный отчёт с рекомендациями по позиционированию.</p>
+<div class="report-stats"><span>Отчёт ✅</span><span>MARKET_ANALYSIS.md</span></div>
+</div>
+
+<div class="card report-card">
+<div class="report-author">📋 PM</div>
+<h3>Управление проектом</h3>
+<p>4 критических отчёта PM-CRITIC-REPORT-001..004. Контент-план на 30 дней, SMM-плейбук, воронка продаж, релизный чеклист MVP.</p>
+<div class="report-stats"><span>30d план ✅</span><span>4 критика ✅</span></div>
+</div>
+
+<div class="card report-card">
+<div class="report-author">🔬 CTO</div>
+<h3>Технический аудит</h3>
+<p>2 CTO-CRITIC-REPORT с анализом архитектуры, безопасности и code review рекомендаций. Выбор стека: Astro.js, Go, PostgreSQL.</p>
+<div class="report-stats"><span>2 отчёта ✅</span></div>
+</div>
+
+<div class="card report-card">
+<div class="report-author">📢 Marketing</div>
+<h3>SMM и контент</h3>
+<p>Стратегия (MARKETING-STRATEGY-M5), воронка продаж (SALES-FUNNEL), SMM-плейбук (SMM-PLAYBOOK), дайджест рынка.</p>
+<div class="report-stats"><span>Стратегия ✅</span><span>Воронка ✅</span></div>
+</div>
+
+<div class="card report-card">
+<div class="report-author">👥 HR</div>
+<h3>Кадровый учёт</h3>
+<p>Отсутствует. 10 агентов уже активны, кадровые процессы пока не автоматизированы.</p>
+<div class="report-stats"><span>Статус: ⏳</span></div>
+</div>
+
+</div>
+</div>
+</section>
+
+<!-- Schemes / Diagrams -->
+<section id="schemes">
+<div class="container">
+<p class="section-subtitle">Схемы и связи</p>
+<h2 class="section-title">Как всё связано</h2>
+<p style="color:var(--text-secondary);margin-bottom:32px;font-size:14px">Архитектура системы, взаимодействие модулей и CI/CD pipeline</p>
+
+<div class="diagram-wrap">
+<div class="mermaid">
+graph LR
+    subgraph Infra3["☁️ Инфраструктура"]
+        VPS2["VPS Masterhost"]
+        CF["Cloudflare"]
+        GH2["GitHub Actions"]
+    end
+    subgraph Site["🌐 Сайт"]
+        Astro2["Astro.js SSG"]
+        GoAPI["Go API (Chi)"]
+        PG[("PostgreSQL")]
+    end
+    subgraph Creative3["🎬 Креатив"]
+        Brand2["Бренд-кит"]
+        Comfy2["ComfyUI"]
+    end
+    subgraph Biz2["📊 Бизнес"]
+        Research["Исследования"]
+        Content["Контент-план"]
+        SMM["SMM"]
+    end
+    subgraph Orchestrator["🤖 Оркестратор"]
+        PClip["Paperclip"]
+        Agents["10 AI-агентов"]
+    end
+
+    Agents --> PClip
+    PClip --> GH2
+    GH2 --> VPS2 & CF
+    CF --> Astro2
+    Astro2 --> GoAPI
+    GoAPI --> PG
+    Brand2 --> Site
+    Comfy2 --> Brand2
+    Research --> Content
+    Content --> SMM
+    SMM --> Site
+</div>
+</div>
+</div>
+</section>
+
+<!-- Marketing Strategy -->
+<section id="marketing" style="background:var(--bg-card)">
+<div class="container">
+<p class="section-subtitle">Маркетинг</p>
+<h2 class="section-title">Воронка и стратегия</h2>
+<p style="color:var(--text-secondary);margin-bottom:16px;font-size:14px">5-этапная воронка продаж от осведомлённости до конверсии</p>
+
+<div class="funnel">
+<div class="funnel-step" style="background:#5b8cd4;width:100%">📢 Осведомлённость <small>X/Twitter, Telegram, SEO</small></div>
+<div class="funnel-step" style="background:#4a7ab8;width:80%">🎯 Интерес <small>Контент-маркетинг, блог, статьи</small></div>
+<div class="funnel-step" style="background:#3a6aaa;width:60%">🤔 Рассмотрение <small>Кейсы, портфолио, сравнительный анализ</small></div>
+<div class="funnel-step" style="background:#2a5a9a;width:40%">✅ Конверсия <small>Форма связи, CTA, демо</small></div>
+<div class="funnel-step" style="background:#1a4a8a;width:20%">❤️ Лояльность <small>Поддержка, апсейлы, рефералы</small></div>
+</div>
+
+<div style="margin-top:40px;text-align:center">
+<p style="color:var(--text-secondary);font-size:14px;margin-bottom:24px">Контент-план на 30 дней: посты, SMM-кампании, дайджесты рынка</p>
+<div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+<span style="padding:6px 14px;border-radius:20px;background:var(--bg-surface);border:1px solid var(--border);font-size:13px">📅 30 контент-юнитов</span>
+<span style="padding:6px 14px;border-radius:20px;background:var(--bg-surface);border:1px solid var(--border);font-size:13px">📱 X/Twitter</span>
+<span style="padding:6px 14px;border-radius:20px;background:var(--bg-surface);border:1px solid var(--border);font-size:13px">✈️ Telegram</span>
+<span style="padding:6px 14px;border-radius:20px;background:var(--bg-surface);border:1px solid var(--border);font-size:13px">📈 SEO</span>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Timeline -->
+<section>
+<div class="container">
+<p class="section-subtitle">План</p>
+<h2 class="section-title">Дорожная карта</h2>
+<div class="timeline" style="max-width:600px;margin:32px auto">
+<div class="timeline-item">
+<div class="phase">Фаза 1 — MVP (текущая)</div>
+<p>Landing Page ✅ | Инфраструктура ⏳ | Бренд-кит ✅ | Анализ рынка ✅ | Контент-план ✅</p>
+</div>
+<div class="timeline-item">
+<div class="phase">Фаза 2 — Развитие</div>
+<p>Блог + MDX | Go API + PostgreSQL | Портфолио | SMM-запуск | Аналитика</p>
+</div>
+<div class="timeline-item">
+<div class="phase">Фаза 3 — Масштабирование</div>
+<p>ComfyUI видео-ген | Рекламные кампании | Дашборд KPI | Полная автоматизация</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Contact -->
+<section style="background:var(--bg-card)">
+<div class="container">
+<p class="section-subtitle">Контакты</p>
+<h2 class="section-title">Свяжитесь с нами</h2>
+<div class="contact-info">
+<div style="font-size:40px;margin-bottom:16px">✉️</div>
+<p><strong>Домен:</strong> dunaev.dev (настраивается)</p>
+<p><strong>Оркестратор:</strong> Paperclip (локально)</p>
+<p><strong>Проект:</strong> Architect — 10 AI-агентов</p>
+<p style="margin-top:16px;font-size:12px;color:var(--text-secondary)">Сайт-презентация компании Dunaev • 2026</p>
+</div>
+</div>
+</section>
+
+<footer class="footer">
+<div class="container">
+<p>© 2026 Dunaev. Интегрированная система управления проектом. Steel-blue theme.</p>
+</div>
+</footer>
+
+</body>
+</html>

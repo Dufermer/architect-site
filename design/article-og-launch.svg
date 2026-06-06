@@ -1,0 +1,104 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#a78bfa" />
+      <stop offset="50%" stop-color="#7c3aed" />
+      <stop offset="100%" stop-color="#5b21b6" />
+    </linearGradient>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f1117" />
+      <stop offset="100%" stop-color="#1a1d23" />
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#3b3f48" stroke-width="0.5" stroke-opacity="0.2" />
+    </pattern>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bgGrad)" />
+  <rect width="1200" height="630" fill="url(#grid)" />
+
+  <!-- Top accent line -->
+  <rect x="0" y="0" width="1200" height="4" fill="url(#accentGrad)" />
+
+  <!-- Side accent bar -->
+  <rect x="0" y="0" width="8" height="630" fill="url(#accentGrad)" opacity="0.6" />
+
+  <!-- Logo -->
+  <g transform="translate(40, 30)">
+    <rect x="0" y="0" width="24" height="24" rx="5" fill="url(#accentGrad)" />
+    <text x="34" y="18" font-family="system-ui, -apple-system, sans-serif" font-size="16" font-weight="700" letter-spacing="2" fill="#D8DEE9">ARCHITECT</text>
+  </g>
+
+  <!-- Badge -->
+  <rect x="1020" y="30" width="140" height="28" rx="14" fill="url(#accentGrad)" />
+  <text x="1090" y="49" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" letter-spacing="1.5" fill="#fff" text-anchor="middle">LAUNCH ARTICLE</text>
+
+  <!-- Main content area -->
+  <g transform="translate(60, 130)">
+    <!-- Pre-heading -->
+    <text x="0" y="0" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="600" letter-spacing="3" fill="#a78bfa" text-transform="uppercase">BUILD IN PUBLIC</text>
+
+    <!-- Heading main -->
+    <text x="0" y="60" font-family="system-ui, -apple-system, sans-serif" font-size="44" font-weight="800" letter-spacing="-0.5" fill="#D8DEE9">
+      <tspan x="0" dy="0">Building an Open-Source</tspan>
+      <tspan x="0" dy="52" fill="url(#accentGrad)">All-in-One Ecosystem</tspan>
+      <tspan x="0" dy="52" font-size="32" fill="#8b92a0">for Your Web Presence</tspan>
+    </text>
+
+    <!-- Description -->
+    <text x="0" y="280" font-family="system-ui, -apple-system, sans-serif" font-size="16" font-weight="400" fill="#8b92a0">
+      <tspan x="0" dy="0">How we replaced 5+ paid services with one self-hosted stack —</tspan>
+      <tspan x="0" dy="26">and you can too. Astro.js + ComfyUI + Cloudflare + AI Agents.</tspan>
+    </text>
+
+    <!-- Tech tags -->
+    <g transform="translate(0, 360)">
+      <rect x="0" y="0" width="90" height="28" rx="14" fill="#232730" stroke="#3b3f48" stroke-width="1" />
+      <text x="45" y="19" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#a78bfa" text-anchor="middle">Astro.js</text>
+
+      <rect x="100" y="0" width="100" height="28" rx="14" fill="#232730" stroke="#3b3f48" stroke-width="1" />
+      <text x="150" y="19" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#a78bfa" text-anchor="middle">ComfyUI + SD</text>
+
+      <rect x="210" y="0" width="100" height="28" rx="14" fill="#232730" stroke="#3b3f48" stroke-width="1" />
+      <text x="260" y="19" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#a78bfa" text-anchor="middle">Cloudflare</text>
+
+      <rect x="320" y="0" width="120" height="28" rx="14" fill="#232730" stroke="#3b3f48" stroke-width="1" />
+      <text x="380" y="19" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#a78bfa" text-anchor="middle">Paperclip Agents</text>
+    </g>
+  </g>
+
+  <!-- Right side accent: architecture visual -->
+  <g transform="translate(760, 20)">
+    <!-- Abstract architecture boxes -->
+    <rect x="300" y="100" width="120" height="80" rx="8" fill="none" stroke="#7c3aed" stroke-width="1.5" stroke-opacity="0.4" />
+    <rect x="280" y="180" width="160" height="60" rx="8" fill="none" stroke="#a78bfa" stroke-width="1.5" stroke-opacity="0.3" />
+    <rect x="320" y="240" width="100" height="100" rx="8" fill="none" stroke="#5b21b6" stroke-width="1.5" stroke-opacity="0.4" />
+
+    <!-- Connecting lines -->
+    <line x1="360" y1="180" x2="360" y2="240" stroke="#a78bfa" stroke-width="1" stroke-opacity="0.3" stroke-dasharray="4,4" />
+    <line x1="420" y1="140" x2="440" y2="210" stroke="#7c3aed" stroke-width="1" stroke-opacity="0.3" stroke-dasharray="4,4" />
+  </g>
+
+  <!-- Bottom section -->
+  <g transform="translate(0, 0)">
+    <!-- Divider -->
+    <line x1="60" y1="540" x2="1140" y2="540" stroke="#3b3f48" stroke-width="1" opacity="0.4" />
+
+    <!-- Author info -->
+    <text x="60" y="575" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="500" fill="#8b92a0">
+      <tspan x="60" dy="0">by @dunaev  ·  #buildinpublic  ·  #opensource  ·  #indiemaker</tspan>
+    </text>
+
+    <!-- CTA -->
+    <rect x="900" y="553" width="240" height="42" rx="21" fill="url(#accentGrad)" filter="url(#glow)" />
+    <text x="1020" y="579" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="700" letter-spacing="1" fill="#fff" text-anchor="middle">READ ON DEV.TO →</text>
+  </g>
+</svg>

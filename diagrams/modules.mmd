@@ -1,0 +1,43 @@
+---
+title: Dunaev Module Interaction
+---
+flowchart LR
+    subgraph Website["🌐 Website Module"]
+        direction LR
+        L[Landing] --> B[Blog]
+        B --> POT[Portfolio]
+        POT --> C[Contact]
+    end
+
+    subgraph DevOps["⚙️ DevOps Module"]
+        direction LR
+        GIT[Git] --> ACT[Actions]
+        ACT --> DEP[Deploy]
+    end
+
+    subgraph Design["🎨 Design Module"]
+        direction LR
+        LOGO[Logo / Brand]
+        TEMPL[Templates]
+        PREV[Previews]
+    end
+
+    subgraph Research["📈 Research Module"]
+        direction LR
+        COMP[Competitors]
+        AUD[Audience]
+        KW[Keywords]
+    end
+
+    subgraph Marketing["📣 Marketing Module"]
+        direction LR
+        X[X / Twitter]
+        TG[Telegram]
+        LN[LinkedIn]
+        PLAN[Content Plan]
+    end
+
+    DevOps --> Website
+    Design --> Website
+    Research --> Marketing
+    Marketing --> Website

@@ -1,0 +1,28 @@
+# ═══════════════════════════════════════════════════════════════
+# Cron jobs — dunaev.dev monitoring & maintenance
+# Part of DUN-105 / DUN-147 monitoring stack
+# ═══════════════════════════════════════════════════════════════
+#
+# Install: sudo cp infra/monitoring/monitor-cron /etc/cron.d/dunaev-monitor
+#          sudo chmod 644 /etc/cron.d/dunaev-monitor
+
+SHELL=/bin/bash
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+MAILTO=""
+
+# ── Monitoring directory ──────────────────────────────────────
+MONITOR_DIR=/root/dunaev/infra/monitoring
+LOG_DIR=/var/log/dunaev
+
+# ── Health check (every 5 minutes) ────────────────────────────
+*/5 * * * * root bash ${MONITOR_DIR}/health-check.sh all >> ${LOG_DIR}/monitor.log 2>&1
+
+# ── Resource check (every 5 minutes) ──────────────────────────
+*/5 * * * * root bash ${MONITOR_DIR}/resource-check.sh all >> ${LOG_DIR}/resource-monitor.log 2>&1
+
+# ── Automatic logrotate (daily at midnight) ───────────────────
+0 0 * * * root /usr/sbin/logrotate -s /var/lib/logrotate-status /etc/logrotate.d/dunaev >> ${LOG_DIR}/logrotate.log 2>&1
+
+# ── Check disk while also doing a cleanup of old logs (>30d) ──
+# Logrotate handles rotation; this cleans orphaned tmp files
+0 6 * * 0 root find /tmp -name 'dunaev-*' -type f -mtime +7 -delete 2>/dev/null || true

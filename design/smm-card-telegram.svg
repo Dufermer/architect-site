@@ -1,0 +1,103 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="800" viewBox="0 0 800 800">
+  <defs>
+    <!-- Purple accent gradient -->
+    <linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#a78bfa" />
+      <stop offset="50%" stop-color="#7c3aed" />
+      <stop offset="100%" stop-color="#5b21b6" />
+    </linearGradient>
+
+    <!-- Subtle glow for badge -->
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="4" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
+    <!-- Card shadow -->
+    <filter id="cardShadow" x="-2%" y="-2%" width="104%" height="108%">
+      <feDropShadow dx="0" dy="2" stdDeviation="16" flood-color="#000" flood-opacity="0.35" />
+    </filter>
+
+    <!-- Grid pattern subtle background -->
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#3b3f48" stroke-width="0.5" stroke-opacity="0.3" />
+    </pattern>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="800" fill="#1a1d23" />
+  <rect width="800" height="800" fill="url(#grid)" />
+
+  <!-- Top accent line -->
+  <rect x="0" y="0" width="800" height="3" fill="url(#accentGrad)" />
+
+  <!-- ===== TOP BAR ===== -->
+  <g transform="translate(0, 0)">
+    <!-- Logo area -->
+    <rect x="0" y="0" width="800" height="72" fill="#232730" rx="0" />
+
+    <!-- Logo mark: purple rectangle -->
+    <rect x="40" y="22" width="28" height="28" rx="6" fill="url(#accentGrad)" />
+
+    <!-- Logo text -->
+    <text x="80" y="43" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="700" letter-spacing="2" fill="#D8DEE9">ARCHITECT</text>
+
+    <!-- Badge on right -->
+    <rect x="640" y="21" width="120" height="30" rx="15" fill="url(#accentGrad)" />
+    <text x="700" y="41" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" letter-spacing="1" fill="#fff" text-anchor="middle">NEW RELEASE</text>
+
+    <!-- Bottom separator -->
+    <line x1="0" y1="72" x2="800" y2="72" stroke="#3b3f48" stroke-width="1" opacity="0.6" />
+  </g>
+
+  <!-- ===== CENTERED HEADING AREA ===== -->
+  <g transform="translate(400, 370)">
+    <!-- Pre-heading label -->
+    <text x="0" y="-100" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="600" letter-spacing="3" fill="#a78bfa" text-anchor="middle" text-transform="uppercase">PRODUCT UPDATE</text>
+
+    <!-- Heading line 1 -->
+    <text x="0" y="-48" font-family="system-ui, -apple-system, sans-serif" font-size="42" font-weight="800" letter-spacing="-0.5" fill="#D8DEE9" text-anchor="middle">
+      <tspan x="0" dy="0">Introducing the New</tspan>
+    </text>
+
+    <!-- Heading line 2 (accent) -->
+    <text x="0" y="12" font-family="system-ui, -apple-system, sans-serif" font-size="52" font-weight="900" letter-spacing="-0.5" fill="url(#accentGrad)" text-anchor="middle">
+      <tspan x="0" dy="0">Architect v4.0</tspan>
+    </text>
+
+    <!-- Heading line 3 (subtitle / description) -->
+    <text x="0" y="70" font-family="system-ui, -apple-system, sans-serif" font-size="18" font-weight="400" letter-spacing="0.3" fill="#8b92a0" text-anchor="middle">
+      <tspan x="0" dy="0">Faster builds, smarter agents, and a redesigned</tspan>
+      <tspan x="0" dy="28">plugin ecosystem built for scale.</tspan>
+    </text>
+  </g>
+
+  <!-- ===== BOTTOM CTA SECTION ===== -->
+  <g transform="translate(0, 0)">
+    <!-- Divider -->
+    <line x1="40" y1="640" x2="760" y2="640" stroke="#3b3f48" stroke-width="1" opacity="0.4" />
+
+    <!-- CTA Button -->
+    <rect x="240" y="666" width="320" height="52" rx="26" fill="url(#accentGrad)" filter="url(#glow)" />
+    <text x="400" y="698" font-family="system-ui, -apple-system, sans-serif" font-size="17" font-weight="700" letter-spacing="1" fill="#fff" text-anchor="middle">LEARN MORE →</text>
+
+    <!-- Secondary CTA text -->
+    <text x="400" y="742" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="400" letter-spacing="0.3" fill="#8b92a0" text-anchor="middle">Available now for all enterprise plans</text>
+  </g>
+
+  <!-- ===== FOOTER ===== -->
+  <g transform="translate(0, 0)">
+    <rect x="0" y="762" width="800" height="38" fill="#232730" />
+
+    <!-- Social dots -->
+    <circle cx="390" cy="781" r="3" fill="#3b3f48" />
+    <circle cx="400" cy="781" r="3" fill="#3b3f48" />
+    <circle cx="410" cy="781" r="3" fill="#3b3f48" />
+
+    <!-- Copyright -->
+    <text x="400" y="785" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="400" letter-spacing="0.5" fill="#5b21b6" text-anchor="middle">© 2026 ARCHITECT. ALL RIGHTS RESERVED.</text>
+  </g>
+</svg>

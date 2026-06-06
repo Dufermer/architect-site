@@ -1,0 +1,30 @@
+# ═══════════════════════════════════════════════════════════════
+# Dockerfile — Go Backend API (multi-stage build)
+# ═══════════════════════════════════════════════════════════════
+
+# ── Build stage ────────────────────────────────────────────────
+FROM golang:1.23-alpine AS builder
+
+RUN apk add --no-cache gcc musl-dev
+
+WORKDIR /build
+COPY backend/go.mod backend/go.sum ./
+RUN go mod download
+
+COPY backend/main.go .
+RUN CGO_ENABLED=1 go build -ldflags="-s -w" -o architect-api .
+
+# ── Runtime stage ──────────────────────────────────────────────
+FROM alpine:3.20
+
+RUN apk add --no-cache ca-certificates curl tzdata
+
+WORKDIR /app
+COPY --from=builder /build/architect-api .
+
+EXPOSE 8080
+
+HEALTHCHECK --interval=30s --timeout=5s --retries=3 --start-period=10s \
+  CMD curl -f http://localhost:8080/api/health || exit 1
+
+ENTRYPOINT ["/app/architect-api"]

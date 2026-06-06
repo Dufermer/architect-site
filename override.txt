@@ -1,0 +1,6 @@
+# ensure usage of GPU_OPTION.NVIDIA version of pytorch
+torch
+torchaudio
+torchsde
+torchvision
+

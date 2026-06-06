@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="800" viewBox="0 0 800 800">
+  <defs>
+    <linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#a78bfa" />
+      <stop offset="50%" stop-color="#7c3aed" />
+      <stop offset="100%" stop-color="#5b21b6" />
+    </linearGradient>
+    <linearGradient id="bgAccent" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#7c3aed" stop-opacity="0.1" />
+      <stop offset="100%" stop-color="#1a1d23" stop-opacity="0" />
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="4" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#3b3f48" stroke-width="0.5" stroke-opacity="0.2" />
+    </pattern>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="800" fill="#1a1d23" />
+  <rect width="800" height="800" fill="url(#bgAccent)" />
+  <rect width="800" height="800" fill="url(#grid)" />
+  <rect x="0" y="0" width="800" height="3" fill="url(#accentGrad)" />
+
+  <!-- ===== TOP BAR ===== -->
+  <g transform="translate(36, 28)">
+    <rect x="0" y="0" width="18" height="28" rx="4" fill="url(#accentGrad)" />
+    <rect x="23" y="5" width="18" height="23" rx="4" fill="url(#accentGrad)" opacity="0.7" />
+    <rect x="0" y="11" width="32" height="5" rx="2.5" fill="#7c3aed" />
+    <text x="52" y="20" font-family="system-ui, -apple-system, sans-serif" font-size="16" font-weight="700" letter-spacing="2.5" fill="#D8DEE9">ARCHITECT</text>
+  </g>
+
+  <!-- Badge -->
+  <g transform="translate(600, 32)">
+    <rect x="0" y="0" width="164" height="28" rx="14" fill="#f59e0b" />
+    <text x="82" y="18" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" letter-spacing="1.5" fill="#1a1d23" text-anchor="middle">LAUNCH ANNOUNCEMENT</text>
+  </g>
+
+  <!-- ===== MAIN CONTENT ===== -->
+  <g transform="translate(400, 340)">
+    <!-- Decorative icon -->
+    <g transform="translate(0, -150)">
+      <rect x="-24" y="-24" width="48" height="48" rx="12" fill="url(#accentGrad)" opacity="0.15" />
+      <text x="0" y="6" font-family="system-ui, -apple-system, sans-serif" font-size="22" font-weight="700" fill="url(#accentGrad)" text-anchor="middle">✦</text>
+    </g>
+
+    <!-- Headline -->
+    <text x="0" y="-60" font-family="system-ui, -apple-system, sans-serif" font-size="38" font-weight="800" letter-spacing="-0.5" fill="#D8DEE9" text-anchor="middle">
+      <tspan x="0" dy="0">We're Building an</tspan>
+      <tspan x="0" dy="50" fill="url(#accentGrad)">Open-Source</tspan>
+      <tspan x="0" dy="50">Ecosystem</tspan>
+    </text>
+
+    <text x="0" y="70" font-family="system-ui, -apple-system, sans-serif" font-size="16" font-weight="400" fill="#8b92a0" text-anchor="middle">
+      <tspan x="0" dy="0">Join the community of builders,</tspan>
+      <tspan x="0" dy="26">designers, and developers creating</tspan>
+      <tspan x="0" dy="26">the future of digital products.</tspan>
+    </text>
+  </g>
+
+  <!-- ===== BOTTOM CTA ===== -->
+  <g transform="translate(400, 640)">
+    <rect x="-150" y="-22" width="300" height="48" rx="24" fill="url(#accentGrad)" filter="url(#glow)" />
+    <text x="0" y="6" font-family="system-ui, -apple-system, sans-serif" font-size="15" font-weight="700" letter-spacing="1" fill="#fff" text-anchor="middle">JOIN THE MOVEMENT</text>
+    <text x="0" y="42" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="400" fill="#8b92a0" text-anchor="middle">architect.dev · early access open</text>
+  </g>
+
+  <!-- Footer -->
+  <g transform="translate(0, 762)">
+    <rect x="0" y="0" width="800" height="38" fill="#232730" />
+    <text x="400" y="24" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="400" letter-spacing="1" fill="#5b21b6" text-anchor="middle">© 2026 ARCHITECT · OPEN-SOURCE ECOSYSTEM</text>
+  </g>
+</svg>

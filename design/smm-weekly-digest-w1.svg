@@ -1,0 +1,173 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="800" viewBox="0 0 800 800">
+  <defs>
+    <linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#a78bfa" />
+      <stop offset="50%" stop-color="#7c3aed" />
+      <stop offset="100%" stop-color="#5b21b6" />
+    </linearGradient>
+    <linearGradient id="greenGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#22c55e" />
+      <stop offset="100%" stop-color="#16a34a" />
+    </linearGradient>
+    <linearGradient id="goldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f59e0b" />
+      <stop offset="100%" stop-color="#d97706" />
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="4" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+    <filter id="cardShadow" x="-2%" y="-2%" width="104%" height="108%">
+      <feDropShadow dx="0" dy="2" stdDeviation="12" flood-color="#000" flood-opacity="0.4" />
+    </filter>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#3b3f48" stroke-width="0.5" stroke-opacity="0.2" />
+    </pattern>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="800" fill="#1a1d23" />
+  <rect width="800" height="800" fill="url(#grid)" />
+  <rect x="0" y="0" width="800" height="3" fill="url(#accentGrad)" />
+
+  <!-- ===== TOP BAR ===== -->
+  <g transform="translate(0, 0)">
+    <rect x="0" y="0" width="800" height="64" fill="#232730" rx="0" />
+    <rect x="28" y="18" width="28" height="28" rx="6" fill="url(#accentGrad)" />
+    <text x="68" y="38" font-family="system-ui, -apple-system, sans-serif" font-size="18" font-weight="700" letter-spacing="2" fill="#D8DEE9">ARCHITECT</text>
+    <rect x="622" y="17" width="150" height="30" rx="15" fill="url(#goldGrad)" opacity="0.85"/>
+    <text x="697" y="37" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" letter-spacing="1" fill="#fff" text-anchor="middle">WEEKLY DIGEST</text>
+    <line x1="0" y1="64" x2="800" y2="64" stroke="#3b3f48" stroke-width="1" opacity="0.6" />
+  </g>
+
+  <!-- ===== TITLE ===== -->
+  <g transform="translate(400, 115)">
+    <text x="0" y="0" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="600" letter-spacing="4" fill="#f59e0b" text-anchor="middle">НЕДЕЛЯ 1</text>
+    <text x="0" y="32" font-family="system-ui, -apple-system, sans-serif" font-size="28" font-weight="800" fill="#D8DEE9" text-anchor="middle">Что сделано за неделю</text>
+    <text x="0" y="56" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="400" fill="#8b92a0" text-anchor="middle">06–12 июня 2026 · #buildinpublic</text>
+  </g>
+
+  <!-- ===== STATS ROW ===== -->
+  <!-- Total -->
+  <g transform="translate(82, 170)" filter="url(#cardShadow)">
+    <rect x="0" y="0" width="156" height="100" rx="12" fill="#232730" />
+    <text x="78" y="38" font-family="system-ui, -apple-system, sans-serif" font-size="32" font-weight="800" fill="#D8DEE9" text-anchor="middle">150</text>
+    <text x="78" y="60" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="400" fill="#8b92a0" text-anchor="middle">Issues создано</text>
+    <rect x="30" y="72" width="96" height="3" rx="1.5" fill="#3b3f48" />
+  </g>
+
+  <!-- Done -->
+  <g transform="translate(250, 170)" filter="url(#cardShadow)">
+    <rect x="0" y="0" width="156" height="100" rx="12" fill="#232730" />
+    <rect x="0" y="0" width="156" height="4" rx="2" fill="#22c55e" />
+    <text x="78" y="38" font-family="system-ui, -apple-system, sans-serif" font-size="32" font-weight="800" fill="#22c55e" text-anchor="middle">80</text>
+    <text x="78" y="60" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="400" fill="#8b92a0" text-anchor="middle">✅ Выполнено</text>
+    <text x="78" y="80" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#22c55e" text-anchor="middle">53%</text>
+  </g>
+
+  <!-- In Progress -->
+  <g transform="translate(418, 170)" filter="url(#cardShadow)">
+    <rect x="0" y="0" width="156" height="100" rx="12" fill="#232730" />
+    <rect x="0" y="0" width="156" height="4" rx="2" fill="#eab308" />
+    <text x="78" y="38" font-family="system-ui, -apple-system, sans-serif" font-size="32" font-weight="800" fill="#eab308" text-anchor="middle">41</text>
+    <text x="78" y="60" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="400" fill="#8b92a0" text-anchor="middle">🔄 В работе</text>
+    <text x="78" y="80" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#eab308" text-anchor="middle">27%</text>
+  </g>
+
+  <!-- Agents -->
+  <g transform="translate(586, 170)" filter="url(#cardShadow)">
+    <rect x="0" y="0" width="132" height="100" rx="12" fill="#232730" />
+    <rect x="0" y="0" width="132" height="4" rx="2" fill="#7c3aed" />
+    <text x="66" y="38" font-family="system-ui, -apple-system, sans-serif" font-size="32" font-weight="800" fill="#a78bfa" text-anchor="middle">13</text>
+    <text x="66" y="60" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="400" fill="#8b92a0" text-anchor="middle">🤖 Агентов</text>
+    <text x="66" y="80" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#a78bfa" text-anchor="middle">5 ролей</text>
+  </g>
+
+  <!-- ===== PROGRESS BAR SECTION ===== -->
+  <g transform="translate(0, 0)">
+    <rect x="40" y="310" width="720" height="90" rx="12" fill="#232730" />
+    <text x="56" y="338" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="600" fill="#D8DEE9">Прогресс MVP (DUN-101)</text>
+
+    <!-- Progress bar background -->
+    <rect x="56" y="352" width="684" height="12" rx="6" fill="#1a1d23" />
+    <!-- Progress bar fill (53%) -->
+    <rect x="56" y="352" width="363" height="12" rx="6" fill="url(#accentGrad)" />
+    <!-- Glow dot -->
+    <circle cx="419" cy="358" r="10" fill="url(#accentGrad)" filter="url(#glow)" />
+    <circle cx="419" cy="358" r="5" fill="#fff" />
+
+    <text x="56" y="388" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="400" fill="#8b92a0">Старт (31 мая)</text>
+    <text x="684" y="388" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="600" fill="#a78bfa" text-anchor="end">MVP: ~2-3 недели 🔮</text>
+  </g>
+
+  <!-- ===== ACHIEVEMENTS LIST ===== -->
+  <g transform="translate(0, 0)">
+    <rect x="40" y="420" width="720" height="180" rx="12" fill="#232730" />
+
+    <text x="56" y="448" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="600" fill="#D8DEE9">🏆 Ключевые достижения недели</text>
+
+    <!-- Item 1 -->
+    <circle cx="66" cy="478" r="6" fill="#22c55e" />
+    <text x="82" y="483" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="400" fill="#D8DEE9">Архитектура системы спроектирована (M1–M5)</text>
+
+    <!-- Item 2 -->
+    <circle cx="66" cy="502" r="6" fill="#22c55e" />
+    <text x="82" y="507" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="400" fill="#D8DEE9">Бренд-кит и SMM-шаблоны подготовлены</text>
+
+    <!-- Item 3 -->
+    <circle cx="66" cy="526" r="6" fill="#22c55e" />
+    <text x="82" y="531" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="400" fill="#D8DEE9">Первая статья написана и готова к публикации</text>
+
+    <!-- Item 4 -->
+    <circle cx="66" cy="550" r="6" fill="#22c55e" />
+    <text x="82" y="555" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="400" fill="#D8DEE9">Маркетинговая стратегия и контент-план готовы</text>
+
+    <!-- Item 5 -->
+    <circle cx="66" cy="574" r="6" fill="#eab308" />
+    <text x="82" y="579" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="400" fill="#D8DEE9">CI/CD и деплой на VPS — в процессе</text>
+  </g>
+
+  <!-- ===== AGENTS ROW ===== -->
+  <g transform="translate(0, 0)">
+    <rect x="40" y="620" width="720" height="80" rx="12" fill="#232730" />
+    <text x="56" y="648" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="600" fill="#D8DEE9">Команда AI-агентов</text>
+
+    <!-- Agent circles -->
+    <circle cx="60" cy="676" r="10" fill="#7c3aed" />
+    <text x="60" y="680" font-family="system-ui, -apple-system, sans-serif" font-size="7" font-weight="700" fill="#fff" text-anchor="middle">CTO</text>
+
+    <circle cx="100" cy="676" r="10" fill="#3b82f6" />
+    <text x="100" y="680" font-family="system-ui, -apple-system, sans-serif" font-size="7" font-weight="700" fill="#fff" text-anchor="middle">ENG</text>
+
+    <circle cx="140" cy="676" r="10" fill="#22c55e" />
+    <text x="140" y="680" font-family="system-ui, -apple-system, sans-serif" font-size="7" font-weight="700" fill="#fff" text-anchor="middle">PM</text>
+
+    <circle cx="180" cy="676" r="10" fill="#a78bfa" />
+    <text x="180" y="680" font-family="system-ui, -apple-system, sans-serif" font-size="7" font-weight="700" fill="#fff" text-anchor="middle">DSN</text>
+
+    <circle cx="220" cy="676" r="10" fill="#f59e0b" />
+    <text x="220" y="680" font-family="system-ui, -apple-system, sans-serif" font-size="7" font-weight="700" fill="#fff" text-anchor="middle">RSR</text>
+
+    <circle cx="260" cy="676" r="10" fill="#ef4444" />
+    <text x="260" y="680" font-family="system-ui, -apple-system, sans-serif" font-size="7" font-weight="700" fill="#fff" text-anchor="middle">QA</text>
+
+    <circle cx="300" cy="676" r="10" fill="#8b5cf6" />
+    <text x="300" y="680" font-family="system-ui, -apple-system, sans-serif" font-size="7" font-weight="700" fill="#fff" text-anchor="middle">OPS</text>
+
+    <circle cx="340" cy="676" r="10" fill="#06b6d4" />
+    <text x="340" y="680" font-family="system-ui, -apple-system, sans-serif" font-size="7" font-weight="700" fill="#fff" text-anchor="middle">HR</text>
+  </g>
+
+  <!-- ===== FOOTER ===== -->
+  <g transform="translate(0, 0)">
+    <rect x="0" y="720" width="800" height="80" fill="#0f1117" />
+    <!-- CTA -->
+    <rect x="240" y="730" width="320" height="40" rx="20" fill="url(#accentGrad)" filter="url(#glow)" />
+    <text x="400" y="755" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="700" letter-spacing="1" fill="#fff" text-anchor="middle">⭐ Подписаться на @dunaevdev</text>
+    <!-- Social links -->
+    <text x="400" y="785" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="400" fill="#5b21b6" text-anchor="middle">TG: @dunaevdev · X: @superking · GitHub: dufermer</text>
+  </g>
+</svg>

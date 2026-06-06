@@ -1,0 +1,53 @@
+---
+title: Dunaev CI/CD Pipeline
+---
+flowchart TD
+    DEV[Developer Push] --> GH[GitHub]
+    GH --> GHA[GitHub Actions Trigger]
+    
+    subgraph Build["🔨 Build Stage"]
+        CHECK[Checkout]
+        INSTALL[Install Dependencies]
+        ASTRO[Astro Build]
+        OPTIMIZE[Optimize Assets]
+    end
+    
+    subgraph Quality["✅ Quality Stage"]
+        LINT[Lint / Type Check]
+        TEST[Tests]
+        LIGHTHOUSE[Lighthouse Check]
+    end
+
+    subgraph Deploy["🚀 Deploy Stage"]
+        CF_PAGES[Cloudflare Pages]
+        PURGE[Cache Purge]
+        HEALTH[Health Check]
+    end
+
+    subgraph Notify["📬 Notification"]
+        REPORT[Build Report]
+        SLACK[Telegram Notify]
+    end
+
+    GHA --> Build
+    Build --> CHECK
+    CHECK --> INSTALL
+    INSTALL --> ASTRO
+    ASTRO --> OPTIMIZE
+    
+    OPTIMIZE --> Quality
+    Quality --> LINT
+    LINT --> TEST
+    TEST --> LIGHTHOUSE
+    
+    LIGHTHOUSE -->|Pass| Deploy
+    LIGHTHOUSE -->|Fail| REPORT
+    
+    Deploy --> CF_PAGES
+    CF_PAGES --> PURGE
+    PURGE --> HEALTH
+    
+    HEALTH -->|OK| Notify
+    HEALTH -->|Fail| REPORT
+    
+    Notify --> REPORT

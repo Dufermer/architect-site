@@ -1,0 +1,22 @@
+# ═══════════════════════════════════════════════════════════════
+# Cron job — dunaev.dev daily backup (DUN-147)
+# ═══════════════════════════════════════════════════════════════
+#
+# Install: sudo cp infra/backups/cron/backup-cron /etc/cron.d/dunaev-backup
+#          sudo chmod 644 /etc/cron.d/dunaev-backup
+
+SHELL=/bin/bash
+PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+MAILTO=""
+
+# ── Backup directory ──────────────────────────────────────────
+BACKUP_DIR=/root/dunaev/infra/backups
+
+# ── Daily full backup at 03:00 ────────────────────────────────
+0 3 * * * root bash ${BACKUP_DIR}/backup.sh all >> /var/log/dunaev/backup.log 2>&1
+
+# ── Rotation cleanup at 04:00 (after daily backup) ────────────
+0 4 * * * root bash ${BACKUP_DIR}/rotate.sh >> /var/log/dunaev/backup-rotate.log 2>&1
+
+# ── Weekly upload to S3/R2 on Sunday at 05:00 ─────────────────
+0 5 * * 0 root bash ${BACKUP_DIR}/backup.sh upload >> /var/log/dunaev/backup-upload.log 2>&1

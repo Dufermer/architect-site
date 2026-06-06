@@ -1,0 +1,81 @@
+[
+  {
+    "name": "Netlify",
+    "url": "https://www.netlify.com",
+    "alive": true,
+    "status_code": 200,
+    "blog_posts": [],
+    "checked_at": "2026-06-06T14:25:14.670600"
+  },
+  {
+    "name": "Vercel",
+    "url": "https://vercel.com",
+    "alive": true,
+    "status_code": 200,
+    "blog_posts": [
+      {
+        "title": "Drives for Vercel Sandbox in Private Beta",
+        "link": "https://vercel.com/changelog/drives-for-vercel-sandbox-in-private-beta"
+      },
+      {
+        "title": "The skills.sh API is now available",
+        "link": "https://vercel.com/changelog/the-skills-sh-api-is-now-available"
+      },
+      {
+        "title": "Updates to Legal Terms",
+        "link": "https://vercel.com/changelog/updates-to-legal-terms-june-2026"
+      }
+    ],
+    "checked_at": "2026-06-06T14:25:20.289451"
+  },
+  {
+    "name": "Cloudflare",
+    "url": "https://pages.cloudflare.com",
+    "alive": false,
+    "status_code": 0,
+    "blog_posts": [],
+    "checked_at": "2026-06-06T14:25:40.304155"
+  },
+  {
+    "name": "Astro",
+    "url": "https://astro.build",
+    "alive": false,
+    "status_code": 0,
+    "blog_posts": [
+      {
+        "title": "Astro Mart: Summer 2026 Collection",
+        "link": "https://astro.build/blog/astro-mart-ss26/"
+      },
+      {
+        "title": "What&apos;s new in Astro - May 2026",
+        "link": "https://astro.build/blog/whats-new-may-2026/"
+      },
+      {
+        "title": "Astro 6.4",
+        "link": "https://astro.build/blog/astro-640/"
+      }
+    ],
+    "checked_at": "2026-06-06T14:25:58.206525"
+  },
+  {
+    "name": "Webflow",
+    "url": "https://webflow.com",
+    "alive": false,
+    "status_code": 0,
+    "blog_posts": [
+      {
+        "title": "Audit trails are a feature, not a compliance tax",
+        "link": "https://webflowmarketingmain.com/blog/audit-trails-not-a-compliance-tax"
+      },
+      {
+        "title": "Webflow Cloud. One workspace for your site and your app. Or just the app.",
+        "link": "https://webflowmarketingmain.com/blog/cloud-apps-without-sites"
+      },
+      {
+        "title": "How an AI-powered fintech startup built a website AI actually trusts",
+        "link": "https://webflowmarketingmain.com/blog/how-an-ai-powered-fintech-startup-built-a-website-ai-actually-trusts"
+      }
+    ],
+    "checked_at": "2026-06-06T14:26:17.692338"
+  }
+]

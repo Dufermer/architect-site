@@ -1,0 +1,117 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1350" viewBox="0 0 1080 1350">
+  <defs>
+    <!-- Purple accent gradient (brand direction: left to right) -->
+    <linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#a78bfa" />
+      <stop offset="50%" stop-color="#7c3aed" />
+      <stop offset="100%" stop-color="#5b21b6" />
+    </linearGradient>
+
+    <!-- CTA button glow -->
+    <filter id="ctaGlow">
+      <feGaussianBlur stdDeviation="6" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
+    <!-- Subtle grid pattern -->
+    <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
+      <path d="M 60 0 L 0 0 0 60" fill="none" stroke="#3b3f48" stroke-width="0.5" stroke-opacity="0.15" />
+    </pattern>
+
+    <!-- Radial glow for hero area -->
+    <radialGradient id="heroGlow" cx="50%" cy="40%" r="55%" fx="50%" fy="40%">
+      <stop offset="0%" stop-color="#7c3aed" stop-opacity="0.08" />
+      <stop offset="50%" stop-color="#7c3aed" stop-opacity="0.04" />
+      <stop offset="100%" stop-color="#1a1d23" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+
+  <!-- ===== BACKGROUND ===== -->
+  <rect width="1080" height="1350" fill="#1a1d23" />
+  <rect width="1080" height="1350" fill="url(#heroGlow)" />
+  <rect width="1080" height="1350" fill="url(#grid)" />
+
+  <!-- Top accent gradient bar -->
+  <rect x="0" y="0" width="1080" height="4" fill="url(#accentGrad)" />
+
+  <!-- ===== LOGO TOP-LEFT ===== -->
+  <g transform="translate(40, 40)">
+    <!-- Logo mark: geometric 'A' pillars -->
+    <rect x="0" y="0" width="24" height="36" rx="5" fill="url(#accentGrad)" />
+    <rect x="30" y="6" width="24" height="30" rx="5" fill="url(#accentGrad)" opacity="0.7" />
+    <rect x="0" y="14" width="42" height="6" rx="3" fill="#7c3aed" />
+    <!-- Logo text -->
+    <text x="68" y="26" font-family="system-ui, -apple-system, sans-serif" font-size="22" font-weight="700" letter-spacing="3" fill="#D8DEE9">ARCHITECT</text>
+    <!-- Tagline -->
+    <text x="68" y="44" font-family="system-ui, -apple-system, sans-serif" font-size="10" font-weight="400" letter-spacing="4" fill="#7c3aed" opacity="0.7">DESIGN · BUILD · SCALE</text>
+  </g>
+
+  <!-- ===== TOP-RIGHT BADGE ===== -->
+  <g transform="translate(840, 48)">
+    <rect x="0" y="0" width="200" height="36" rx="18" fill="url(#accentGrad)" />
+    <text x="100" y="23" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="700" letter-spacing="2" fill="#fff" text-anchor="middle">STORY</text>
+  </g>
+
+  <!-- ===== LARGE HEADING — TOP 3/4 AREA ===== -->
+  <g transform="translate(540, 520)">
+    <!-- Pre-heading / eyebrow label -->
+    <text x="0" y="-200" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="600" letter-spacing="4" fill="#a78bfa" text-anchor="middle">PRODUCT LAUNCH</text>
+
+    <!-- Heading line 1 -->
+    <text x="0" y="-120" font-family="system-ui, -apple-system, sans-serif" font-size="64" font-weight="800" letter-spacing="-1" fill="#D8DEE9" text-anchor="middle">
+      <tspan x="0" dy="0">We're Building</tspan>
+    </text>
+
+    <!-- Heading line 2 — accent gradient -->
+    <text x="0" y="-30" font-family="system-ui, -apple-system, sans-serif" font-size="80" font-weight="900" letter-spacing="-1" fill="url(#accentGrad)" text-anchor="middle">
+      <tspan x="0" dy="0">the Future</tspan>
+    </text>
+
+    <!-- Heading line 3 — subtitle -->
+    <text x="0" y="60" font-family="system-ui, -apple-system, sans-serif" font-size="22" font-weight="400" letter-spacing="1" fill="#8b92a0" text-anchor="middle">
+      <tspan x="0" dy="0">An open-source ecosystem for building</tspan>
+      <tspan x="0" dy="36">digital products — from idea to deploy.</tspan>
+    </text>
+
+    <!-- Decorative accent line under heading -->
+    <rect x="-40" y="120" width="80" height="3" rx="1.5" fill="url(#accentGrad)" />
+  </g>
+
+  <!-- ===== CTA BUTTON — BOTTOM THIRD ===== -->
+  <g transform="translate(540, 1070)">
+    <!-- Primary CTA button -->
+    <rect x="-200" y="-30" width="400" height="60" rx="30" fill="url(#accentGrad)" filter="url(#ctaGlow)" />
+    <text x="0" y="6" font-family="system-ui, -apple-system, sans-serif" font-size="20" font-weight="700" letter-spacing="1.5" fill="#fff" text-anchor="middle">JOIN THE WAITLIST</text>
+
+    <!-- Secondary / sub-CTA -->
+    <text x="0" y="70" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="400" letter-spacing="0.5" fill="#8b92a0" text-anchor="middle">Early access for the first 500 builders</text>
+
+    <!-- Bottom decorative stats row -->
+    <g transform="translate(0, 140)">
+      <!-- Stat 1 -->
+      <text x="-180" y="0" font-family="system-ui, -apple-system, sans-serif" font-size="28" font-weight="700" fill="#22c55e" text-anchor="middle">2.4K+</text>
+      <text x="-180" y="22" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="400" fill="#8b92a0" text-anchor="middle">GitHub Stars</text>
+
+      <!-- Divider -->
+      <circle cx="0" cy="12" r="3" fill="#3b3f48" />
+
+      <!-- Stat 2 -->
+      <text x="180" y="0" font-family="system-ui, -apple-system, sans-serif" font-size="28" font-weight="700" fill="#22c55e" text-anchor="middle">500+</text>
+      <text x="180" y="22" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="400" fill="#8b92a0" text-anchor="middle">Early Adopters</text>
+    </g>
+  </g>
+
+  <!-- ===== FOOTER BAR ===== -->
+  <g transform="translate(0, 1300)">
+    <rect x="0" y="0" width="1080" height="50" fill="#232730" />
+    <!-- Social indicators -->
+    <circle cx="530" cy="25" r="3" fill="#3b3f48" />
+    <circle cx="540" cy="25" r="3" fill="#3b3f48" />
+    <circle cx="550" cy="25" r="3" fill="#3b3f48" />
+    <!-- Copyright -->
+    <text x="540" y="30" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="400" letter-spacing="1" fill="#5b21b6" text-anchor="middle">© 2026 ARCHITECT · OPEN-SOURCE ECOSYSTEM</text>
+  </g>
+</svg>

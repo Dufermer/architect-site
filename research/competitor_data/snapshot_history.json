@@ -1,0 +1,27 @@
+{
+  "netlify_pricing": {
+    "hash": "eb1a3d5bdb58bced85b145a5364662cc557700f3868690e959b35b69f617e081",
+    "checked_at": "2026-06-06T11:53:15.589400+00:00",
+    "url": "https://www.netlify.com/pricing/"
+  },
+  "netlify_changelog": {
+    "hash": "93db09a5115ca6c6a847988bd3e2c6dbc6b77e3749316c55407c237ce7e1767e",
+    "checked_at": "2026-06-06T11:53:16.348886+00:00",
+    "url": "https://www.netlify.com/changelog/"
+  },
+  "vercel_changelog": {
+    "hash": "35204926f7273beb1c43a2b9202055ca152d0e995f1bd54099fc0ba8e0af50d3",
+    "checked_at": "2026-06-06T11:53:18.329279+00:00",
+    "url": "https://vercel.com/changelog"
+  },
+  "vercel_pricing": {
+    "hash": "36bc17f72427865a7f13c63dfd7766a797407eea4eddfbe735dfb0fc70634007",
+    "checked_at": "2026-06-06T11:53:17.443094+00:00",
+    "url": "https://vercel.com/pricing"
+  },
+  "webflow_pricing": {
+    "hash": "6d8a44c4a4d4bda312c915fd167a2e1a8ef6cf66f077dbe54582618b8e9900db",
+    "checked_at": "2026-06-06T11:53:21.926842+00:00",
+    "url": "https://webflow.com/pricing"
+  }
+}

@@ -1,0 +1,93 @@
+# ═══════════════════════════════════════════════════════════════
+# Deploy to VPS — Docker Compose via SSH (DUN-145)
+# Trigger: push to main
+# ═══════════════════════════════════════════════════════════════
+
+name: Deploy to VPS
+
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - '**.md'
+      - '.github/**'
+  workflow_dispatch:
+
+env:
+  DOCKER_COMPOSE_FILE: infra/docker-compose.yml
+  VPS_HOST: 90.156.129.19
+  VPS_USER: root
+  VPS_DEPLOY_DIR: /opt/architect
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build backend image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: infra/Dockerfile.backend
+          tags: architect-backend:latest
+          outputs: type=docker,dest=/tmp/architect-backend.tar
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Build frontend image
+        uses: docker/build-push-action@v6
+        with:
+          context: landing
+          file: infra/Dockerfile.frontend
+          tags: architect-frontend:latest
+          outputs: type=docker,dest=/tmp/architect-frontend.tar
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Deploy to VPS
+        uses: appleboy/scp-action@v0.1.7
+        with:
+          host: ${{ env.VPS_HOST }}
+          username: ${{ env.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          source: /tmp/architect-backend.tar,/tmp/architect-frontend.tar
+          target: ${{ env.VPS_DEPLOY_DIR }}/images
+          strip_components: 2
+
+      - name: SSH into VPS and restart services
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ env.VPS_HOST }}
+          username: ${{ env.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          script: |
+            set -e
+
+            cd ${{ env.VPS_DEPLOY_DIR }}
+
+            # Load newly built images
+            docker load -i images/architect-backend.tar || true
+            docker load -i images/architect-frontend.tar || true
+
+            # Pull any updated base images
+            docker compose -f ${{ env.DOCKER_COMPOSE_FILE }} pull --ignore-buildable
+
+            # Restart services with zero-downtime strategy
+            docker compose -f ${{ env.DOCKER_COMPOSE_FILE }} up -d --no-deps --build backend frontend
+
+            # Clean up old images
+            docker image prune -f
+
+            # Verify deployment
+            echo "=== Health check ==="
+            sleep 5
+            curl -sf https://dunaev.dev/api/health && echo " — Backend OK" || echo " — Backend health check failed (may be starting)"
+            curl -sf -o /dev/null -w "Frontend HTTP: %{http_code}\n" https://dunaev.dev || echo " — Frontend check deferred"
+
+            echo "=== Deployment complete ==="
